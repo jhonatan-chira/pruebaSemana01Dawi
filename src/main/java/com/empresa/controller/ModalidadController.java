@@ -1,6 +1,7 @@
 package com.empresa.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,10 @@ public class ModalidadController {
 	@PostMapping							//Jsonn se transforma en objeto
 	public ResponseEntity<?> insertaModalidad(@RequestBody Modalidad obj){
 		List<String> lstSalida = new ArrayList<String>();
+		
+		obj.setEstado(1);
+		obj.setFechaActualizacion(new Date());
+		obj.setFechaRegistro(new Date());
 		
 		Modalidad objSalida = service.insertaModalidad(obj);
 		if (objSalida == null) {
